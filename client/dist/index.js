@@ -22,7 +22,13 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-var FormOne = function FormOne() {
+var HomePage = function HomePage(props) {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+    onClick: props.handleCheckoutClick
+  }, "Checkout"));
+};
+
+var FormOne = function FormOne(props) {
   return (
     /*#__PURE__*/
     //name, email, and password for account creation
@@ -38,11 +44,13 @@ var FormOne = function FormOne() {
     })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
       type: "submit",
       value: "Submit"
-    })))
+    })), /*#__PURE__*/React.createElement("button", {
+      onClick: props.handleNextClickFormOne
+    }, "NEXT"))
   );
 };
 
-var FormTwo = function FormTwo() {
+var FormTwo = function FormTwo(props) {
   return (
     /*#__PURE__*/
     //ship to address (line 1, line 2, city, state, zip code) and phone number
@@ -67,11 +75,13 @@ var FormTwo = function FormTwo() {
     })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
       type: "submit",
       value: "Submit"
-    })))
+    })), /*#__PURE__*/React.createElement("button", {
+      onClick: props.handleNextClickForm
+    }, "NEXT"))
   );
 };
 
-var FormThree = function FormThree() {
+var FormThree = function FormThree(props) {
   return (
     /*#__PURE__*/
     //credit card #, expiry date, CVV, and billing zip code
@@ -90,14 +100,10 @@ var FormThree = function FormThree() {
     })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
       type: "submit",
       value: "Submit"
-    })))
+    })), /*#__PURE__*/React.createElement("button", {
+      onClick: props.handleNextClickFormThree
+    }, "NEXT"))
   );
-};
-
-var HomePage = function HomePage(props) {
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
-    onClick: props.handleClick
-  }, "Checkout"));
 };
 
 var App = /*#__PURE__*/function (_React$Component) {
@@ -113,30 +119,66 @@ var App = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this);
     _this.state = {
       currentForm: 'FormThree',
-      data: 0
+      name: '',
+      email: '',
+      password: '',
+      line1: '',
+      line2: '',
+      city: '',
+      state: '',
+      zipeCode: '',
+      phoneNumber: '',
+      creditCardNumber: '',
+      expiryDate: '',
+      CVV: '',
+      billingZipCode: ''
     };
-    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    _this.handleCheckoutClick = _this.handleCheckoutClick.bind(_assertThisInitialized(_this));
+    _this.handleNextClickFormOne = _this.handleNextClickFormOne.bind(_assertThisInitialized(_this));
+    _this.handleNextClickFormTwo = _this.handleNextClickFormTwo.bind(_assertThisInitialized(_this));
+    _this.handleNextClickFormThree = _this.handleNextClickFormThree.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(App, [{
-    key: "handleClick",
-    value: function handleClick() {
-      console.log('SAY WHAT AGAIN.  SAY IT I DARE YOU I DOUBLE DOG DARE YOU. no bind needed.');
+    key: "handleCheckoutClick",
+    value: function handleCheckoutClick() {
+      console.log('SAY WHAT AGAIN.  SAY IT I DARE YOU I DOUBLE DOG DARE YOU.  Clicked in HomePage');
+    }
+  }, {
+    key: "handleNextClickFormOne",
+    value: function handleNextClickFormOne() {
+      console.log('clicked NEXT in FormOne');
+    }
+  }, {
+    key: "handleNextClickFormTwo",
+    value: function handleNextClickFormTwo() {
+      console.log('clicked NEXT in FormTwo');
+    }
+  }, {
+    key: "handleNextClickFormThree",
+    value: function handleNextClickFormThree() {
+      console.log('clicked NEXT in FormThree');
     }
   }, {
     key: "render",
     value: function render() {
       if (this.state.currentForm === 'HomePage') {
         return /*#__PURE__*/React.createElement(HomePage, {
-          handleClick: this.handleClick
+          handleCheckoutClick: this.handleCheckoutClick
         });
       } else if (this.state.currentForm === 'FormOne') {
-        return /*#__PURE__*/React.createElement(FormOne, null);
+        return /*#__PURE__*/React.createElement(FormOne, {
+          handleNextClickFormOne: this.handleNextClickFormOne
+        });
       } else if (this.state.currentForm === 'FormTwo') {
-        return /*#__PURE__*/React.createElement(FormTwo, null);
+        return /*#__PURE__*/React.createElement(FormTwo, {
+          handleNextClickFormTwo: this.handleNextClickFormTwo
+        });
       } else if (this.state.currentForm === 'FormThree') {
-        return /*#__PURE__*/React.createElement(FormThree, null);
+        return /*#__PURE__*/React.createElement(FormThree, {
+          handleNextClickFormThree: this.handleNextClickFormThree
+        });
       }
     }
   }]);

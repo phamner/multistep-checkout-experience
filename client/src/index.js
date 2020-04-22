@@ -1,5 +1,12 @@
+var HomePage = function(props){
+  return(
+    <div>
+      <button onClick={props.handleCheckoutClick}>Checkout</button>
+    </div>
+  )
+}
 
-var FormOne = function(){
+var FormOne = function(props){
   return (
     //name, email, and password for account creation
     <div>
@@ -25,11 +32,14 @@ var FormOne = function(){
 
         <input type="submit" value="Submit" />
       </form>
+
+      <button onClick={props.handleNextClickFormOne}>NEXT</button>
+
     </div>
   );
 };
 
-var FormTwo = function(){
+var FormTwo = function(props){
   return (
     //ship to address (line 1, line 2, city, state, zip code) and phone number
     <div>
@@ -74,11 +84,13 @@ var FormTwo = function(){
 
         <input type="submit" value="Submit" />
       </form>
+      <button onClick={props.handleNextClickForm}>NEXT</button>
+
     </div>
   );
 };
 
-var FormThree = function(){
+var FormThree = function(props){
   return (
     //credit card #, expiry date, CVV, and billing zip code
     <div>
@@ -110,40 +122,61 @@ var FormThree = function(){
 
         <input type="submit" value="Submit" />
       </form>
+      <button onClick={props.handleNextClickFormThree}>NEXT</button>
+
+
     </div>
   );
 };
 
-var HomePage = function(props){
-  return(
-    <div>
-      <button onClick={props.handleClick}>Checkout</button>
-    </div>
-  )
-}
 
 class App extends React.Component {
   constructor(){
     super();
     this.state = {
       currentForm: 'FormThree',
-      data: 0
+      name: '',
+      email: '',
+      password: '',
+      line1: '',
+      line2: '',
+      city: '',
+      state: '',
+      zipeCode: '',
+      phoneNumber: '',
+      creditCardNumber: '',
+      expiryDate: '',
+      CVV: '',
+      billingZipCode: ''
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.handleCheckoutClick = this.handleCheckoutClick.bind(this);
+    this.handleNextClickFormOne = this.handleNextClickFormOne.bind(this);
+    this.handleNextClickFormTwo = this.handleNextClickFormTwo.bind(this);
+    this.handleNextClickFormThree = this.handleNextClickFormThree.bind(this);
+
   }
-  handleClick() {
-    console.log('SAY WHAT AGAIN.  SAY IT I DARE YOU I DOUBLE DOG DARE YOU. no bind needed.')
+  handleCheckoutClick() {
+    console.log('SAY WHAT AGAIN.  SAY IT I DARE YOU I DOUBLE DOG DARE YOU.  Clicked in HomePage')
+  }
+  handleNextClickFormOne(){
+    console.log('clicked NEXT in FormOne')
+  }
+  handleNextClickFormTwo(){
+    console.log('clicked NEXT in FormTwo')
+  }
+  handleNextClickFormThree(){
+    console.log('clicked NEXT in FormThree')
   }
 
   render() {
     if (this.state.currentForm === 'HomePage') {
-      return(<HomePage handleClick={this.handleClick}/>)
+      return(<HomePage handleCheckoutClick={this.handleCheckoutClick}/>)
     } else if (this.state.currentForm === 'FormOne') {
-      return(<FormOne />)
+      return(<FormOne handleNextClickFormOne={this.handleNextClickFormOne}/>)
     } else if (this.state.currentForm === 'FormTwo') {
-      return(<FormTwo />)
+      return(<FormTwo handleNextClickFormTwo={this.handleNextClickFormTwo}/>)
     } else if (this.state.currentForm === 'FormThree') {
-      return(<FormThree />)
+      return(<FormThree handleNextClickFormThree={this.handleNextClickFormThree}/>)
     }
   }
 }
