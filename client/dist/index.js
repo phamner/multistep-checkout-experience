@@ -22,9 +22,84 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import App from './components/app.js'
+var FormOne = function FormOne() {
+  return (
+    /*#__PURE__*/
+    //name, email, and password for account creation
+    React.createElement("div", null, /*#__PURE__*/React.createElement("h3", null, "Form One"), /*#__PURE__*/React.createElement("form", null, /*#__PURE__*/React.createElement("label", null, "Name:", /*#__PURE__*/React.createElement("input", {
+      type: "text",
+      value: ""
+    })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Email:", /*#__PURE__*/React.createElement("input", {
+      type: "text",
+      value: ""
+    })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Password:", /*#__PURE__*/React.createElement("input", {
+      type: "text",
+      value: ""
+    })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+      type: "submit",
+      value: "Submit"
+    })))
+  );
+};
+
+var FormTwo = function FormTwo() {
+  return (
+    /*#__PURE__*/
+    //ship to address (line 1, line 2, city, state, zip code) and phone number
+    React.createElement("div", null, /*#__PURE__*/React.createElement("h3", null, "Form Two"), /*#__PURE__*/React.createElement("form", null, /*#__PURE__*/React.createElement("h5", null, "Ship to address:"), /*#__PURE__*/React.createElement("label", null, "line 1:", /*#__PURE__*/React.createElement("input", {
+      type: "text",
+      value: ""
+    })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "line 2:", /*#__PURE__*/React.createElement("input", {
+      type: "text",
+      value: ""
+    })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "City:", /*#__PURE__*/React.createElement("input", {
+      type: "text",
+      value: ""
+    })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "State:", /*#__PURE__*/React.createElement("input", {
+      type: "text",
+      value: ""
+    })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Zipcode:", /*#__PURE__*/React.createElement("input", {
+      type: "text",
+      value: ""
+    })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Phone number:", /*#__PURE__*/React.createElement("input", {
+      type: "text",
+      value: ""
+    })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+      type: "submit",
+      value: "Submit"
+    })))
+  );
+};
+
+var FormThree = function FormThree() {
+  return (
+    /*#__PURE__*/
+    //credit card #, expiry date, CVV, and billing zip code
+    React.createElement("div", null, /*#__PURE__*/React.createElement("h3", null, "Form Three"), /*#__PURE__*/React.createElement("form", null, /*#__PURE__*/React.createElement("label", null, "Credit Card Number:", /*#__PURE__*/React.createElement("input", {
+      type: "text",
+      value: ""
+    })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Expiry date:", /*#__PURE__*/React.createElement("input", {
+      type: "text",
+      value: ""
+    })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "CVV:", /*#__PURE__*/React.createElement("input", {
+      type: "text",
+      value: ""
+    })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Billing zip code:", /*#__PURE__*/React.createElement("input", {
+      type: "text",
+      value: ""
+    })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+      type: "submit",
+      value: "Submit"
+    })))
+  );
+};
+
+var HomePage = function HomePage(props) {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+    onClick: props.handleClick
+  }, "Checkout"));
+};
+
 var App = /*#__PURE__*/function (_React$Component) {
   _inherits(App, _React$Component);
 
@@ -36,18 +111,33 @@ var App = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, App);
 
     _this = _super.call(this);
-    _this.state = {};
+    _this.state = {
+      currentForm: 'FormThree',
+      data: 0
+    };
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(App, [{
+    key: "handleClick",
+    value: function handleClick() {
+      console.log('SAY WHAT AGAIN.  SAY IT I DARE YOU I DOUBLE DOG DARE YOU. no bind needed.');
+    }
+  }, {
     key: "render",
     value: function render() {
-      return (
-        /*#__PURE__*/
-        //The divs below will hold my app
-        React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "the app lives here"), /*#__PURE__*/React.createElement("button", null, "Click me sucka"))
-      );
+      if (this.state.currentForm === 'HomePage') {
+        return /*#__PURE__*/React.createElement(HomePage, {
+          handleClick: this.handleClick
+        });
+      } else if (this.state.currentForm === 'FormOne') {
+        return /*#__PURE__*/React.createElement(FormOne, null);
+      } else if (this.state.currentForm === 'FormTwo') {
+        return /*#__PURE__*/React.createElement(FormTwo, null);
+      } else if (this.state.currentForm === 'FormThree') {
+        return /*#__PURE__*/React.createElement(FormThree, null);
+      }
     }
   }]);
 
