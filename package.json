@@ -1,0 +1,35 @@
+{
+  "name": "multistep-checkout-experience",
+  "version": "1.0.0",
+  "description": "A single-page app that takes a user through a series of forms that simulate a shopping cart checkout experience.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel client/src -d client/dist -w",
+    "start": "nodemon server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phamner/multistep-checkout-experience.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phamner/multistep-checkout-experience/issues"
+  },
+  "homepage": "https://github.com/phamner/multistep-checkout-experience#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "install": "^0.13.0",
+    "nodemon": "^2.0.3",
+    "path": "^0.12.7",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
