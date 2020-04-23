@@ -224,7 +224,7 @@ var App = /*#__PURE__*/function (_React$Component) {
           city: this.state.city,
           state: this.state.state,
           zipCode: this.state.zipCode,
-          phoneNumber: this.state.line1
+          phoneNumber: this.state.phoneNumber
         });
       } else if (this.state.currentForm === 'FormThree') {
         return /*#__PURE__*/React.createElement(FormThree, {
