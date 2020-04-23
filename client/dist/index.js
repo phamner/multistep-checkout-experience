@@ -127,8 +127,11 @@ var FormThree = function FormThree(props) {
   );
 };
 
-var ConfirmationPage = function ConfirmationPage() {
-  return /*#__PURE__*/React.createElement("div", null, "WELCOME TO THE Confirmation Page");
+var ConfirmationPage = function ConfirmationPage(props) {
+  console.log(props);
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", null, "Thank you for shopping with us!  Please confirm that your personal data is correct before completing this purchase."), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, "Name: ", props.name), /*#__PURE__*/React.createElement("li", null, "Email: ", props.email), /*#__PURE__*/React.createElement("li", null, "Password: ", props.password), /*#__PURE__*/React.createElement("li", null, "Line 1: ", props.line1), /*#__PURE__*/React.createElement("li", null, "Line 2: ", props.line2), /*#__PURE__*/React.createElement("li", null, "City: ", props.city), /*#__PURE__*/React.createElement("li", null, "State: ", props.state), /*#__PURE__*/React.createElement("li", null, "Zip Code: ", props.zipCode), /*#__PURE__*/React.createElement("li", null, "Phone Number: ", props.phoneNumber), /*#__PURE__*/React.createElement("li", null, "Credit Card #: ", props.creditCardNumber), /*#__PURE__*/React.createElement("li", null, "Expiry Date: ", props.expiryDate), /*#__PURE__*/React.createElement("li", null, "CVV: ", props.CVV), /*#__PURE__*/React.createElement("li", null, "Billing Zip Code: ", props.billingZipCode)), /*#__PURE__*/React.createElement("button", {
+    onClick: props.handlePurchaseClick
+  }, "Purchase"));
 };
 
 var App = /*#__PURE__*/function (_React$Component) {
@@ -163,6 +166,7 @@ var App = /*#__PURE__*/function (_React$Component) {
     _this.handleNextClickFormTwo = _this.handleNextClickFormTwo.bind(_assertThisInitialized(_this));
     _this.handleNextClickFormThree = _this.handleNextClickFormThree.bind(_assertThisInitialized(_this));
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handlePurchaseClick = _this.handlePurchaseClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -199,6 +203,15 @@ var App = /*#__PURE__*/function (_React$Component) {
       console.log('CC Number: ', this.state.creditCardNumber, 'expiryDate: ', this.state.expiryDate, 'CVV: ', this.state.CVV, 'billingZipCode: ', this.state.billingZipCode);
       this.setState({
         currentForm: 'ConfirmationPage'
+      });
+    }
+  }, {
+    key: "handlePurchaseClick",
+    value: function handlePurchaseClick() {
+      console.log('purchase button has been clicked yall!');
+      alert("thank you for your purchase ".concat(this.state.name));
+      this.setState({
+        currentForm: 'HomePage'
       });
     }
   }, {
@@ -245,7 +258,22 @@ var App = /*#__PURE__*/function (_React$Component) {
           billingZipCode: this.state.billingZipCode
         });
       } else if (this.state.currentForm === 'ConfirmationPage') {
-        return /*#__PURE__*/React.createElement(ConfirmationPage, null);
+        return /*#__PURE__*/React.createElement(ConfirmationPage, {
+          handlePurchaseClick: this.handlePurchaseClick,
+          name: this.state.name,
+          email: this.state.email,
+          password: this.state.password,
+          line1: this.state.line1,
+          line2: this.state.line2,
+          city: this.state.city,
+          state: this.state.state,
+          zipCode: this.state.zipCode,
+          phoneNumber: this.state.phoneNumber,
+          creditCardNumber: this.state.creditCardNumber,
+          expiryDate: this.state.expiryDate,
+          CVV: this.state.CVV,
+          billingZipCode: this.state.billingZipCode
+        });
       }
     }
   }]);

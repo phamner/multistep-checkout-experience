@@ -127,9 +127,34 @@ var FormThree = function(props){
   );
 };
 
-var ConfirmationPage = function(){
+var ConfirmationPage = function(props){
+  console.log(props)
   return(
-    <div>WELCOME TO THE Confirmation Page</div>
+    <div>
+      <h4>
+        Thank you for shopping with us!  Please confirm that your personal data is correct before completing this purchase.
+      </h4>
+
+      <ul>
+        <li>Name: {props.name}</li>
+        <li>Email: {props.email}</li>
+        <li>Password: {props.password}</li>
+        <li>Line 1: {props.line1}</li>
+        <li>Line 2: {props.line2}</li>
+        <li>City: {props.city}</li>
+        <li>State: {props.state}</li>
+        <li>Zip Code: {props.zipCode}</li>
+        <li>Phone Number: {props.phoneNumber}</li>
+        <li>Credit Card #: {props.creditCardNumber}</li>
+        <li>Expiry Date: {props.expiryDate}</li>
+        <li>CVV: {props.CVV}</li>
+        <li>Billing Zip Code: {props.billingZipCode}</li>
+      </ul>
+
+      <button onClick={props.handlePurchaseClick}>Purchase</button>
+
+
+    </div>
   )
 };
 
@@ -158,6 +183,7 @@ class App extends React.Component {
     this.handleNextClickFormTwo = this.handleNextClickFormTwo.bind(this);
     this.handleNextClickFormThree = this.handleNextClickFormThree.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handlePurchaseClick = this.handlePurchaseClick.bind(this);
   }
 
 
@@ -190,6 +216,16 @@ class App extends React.Component {
       currentForm: 'ConfirmationPage'
     })
   }
+  handlePurchaseClick(){
+    console.log('purchase button has been clicked yall!');
+    alert(`thank you for your purchase ${this.state.name}`);
+    this.setState({
+      currentForm: 'HomePage'
+    })
+  }
+
+
+
   handleChange(event){
     // console.log('handling change');
     var field = event.target.id
@@ -235,7 +271,23 @@ class App extends React.Component {
       />)
     }
     else if (this.state.currentForm === 'ConfirmationPage') {
-      return(<ConfirmationPage />)
+      return(<ConfirmationPage
+        handlePurchaseClick={this.handlePurchaseClick}
+        name={this.state.name}
+        email={this.state.email}
+        password={this.state.password}
+        line1={this.state.line1}
+        line2={this.state.line2}
+        city={this.state.city}
+        state={this.state.state}
+        zipCode={this.state.zipCode}
+        phoneNumber={this.state.phoneNumber}
+        creditCardNumber={this.state.creditCardNumber}
+        expiryDate={this.state.expiryDate}
+        CVV={this.state.CVV}
+        billingZipCode={this.state.billingZipCode}
+
+      />)
     }
   }
 }
