@@ -2,6 +2,8 @@
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -24,27 +26,31 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 var HomePage = function HomePage(props) {
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
-    onClick: props.handleCheckoutClick
+    onClick: props.handleHomePageClick
   }, "Checkout"));
 };
 
 var FormOne = function FormOne(props) {
+  console.log(props);
   return (
     /*#__PURE__*/
     //name, email, and password for account creation
     React.createElement("div", null, /*#__PURE__*/React.createElement("h3", null, "Form One"), /*#__PURE__*/React.createElement("form", null, /*#__PURE__*/React.createElement("label", null, "Name:", /*#__PURE__*/React.createElement("input", {
       type: "text",
-      value: ""
+      id: "name",
+      onChange: props.handleChange,
+      value: props.name
     })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Email:", /*#__PURE__*/React.createElement("input", {
       type: "text",
-      value: ""
+      id: "email",
+      onChange: props.handleChange,
+      value: props.email
     })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Password:", /*#__PURE__*/React.createElement("input", {
       type: "text",
-      value: ""
-    })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
-      type: "submit",
-      value: "Submit"
-    })), /*#__PURE__*/React.createElement("button", {
+      id: "password",
+      onChange: props.handleChange,
+      value: props.password
+    })), /*#__PURE__*/React.createElement("br", null)), /*#__PURE__*/React.createElement("button", {
       onClick: props.handleNextClickFormOne
     }, "NEXT"))
   );
@@ -56,27 +62,36 @@ var FormTwo = function FormTwo(props) {
     //ship to address (line 1, line 2, city, state, zip code) and phone number
     React.createElement("div", null, /*#__PURE__*/React.createElement("h3", null, "Form Two"), /*#__PURE__*/React.createElement("form", null, /*#__PURE__*/React.createElement("h5", null, "Ship to address:"), /*#__PURE__*/React.createElement("label", null, "line 1:", /*#__PURE__*/React.createElement("input", {
       type: "text",
-      value: ""
+      id: "line1",
+      onChange: props.handleChange,
+      value: props.line1
     })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "line 2:", /*#__PURE__*/React.createElement("input", {
       type: "text",
-      value: ""
+      id: "line2",
+      onChange: props.handleChange,
+      value: props.line2
     })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "City:", /*#__PURE__*/React.createElement("input", {
       type: "text",
-      value: ""
+      id: "city",
+      onChange: props.handleChange,
+      value: props.city
     })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "State:", /*#__PURE__*/React.createElement("input", {
       type: "text",
-      value: ""
+      id: "state",
+      onChange: props.handleChange,
+      value: props.state
     })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Zipcode:", /*#__PURE__*/React.createElement("input", {
       type: "text",
-      value: ""
+      id: "zipCode",
+      onChange: props.handleChange,
+      value: props.zipCode
     })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Phone number:", /*#__PURE__*/React.createElement("input", {
       type: "text",
-      value: ""
-    })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
-      type: "submit",
-      value: "Submit"
-    })), /*#__PURE__*/React.createElement("button", {
-      onClick: props.handleNextClickForm
+      id: "phoneNumber",
+      onChange: props.handleChange,
+      value: props.phoneNumber
+    })), /*#__PURE__*/React.createElement("br", null)), /*#__PURE__*/React.createElement("button", {
+      onClick: props.handleNextClickFormTwo
     }, "NEXT"))
   );
 };
@@ -85,8 +100,9 @@ var FormThree = function FormThree(props) {
   return (
     /*#__PURE__*/
     //credit card #, expiry date, CVV, and billing zip code
-    React.createElement("div", null, /*#__PURE__*/React.createElement("h3", null, "Form Three"), /*#__PURE__*/React.createElement("form", null, /*#__PURE__*/React.createElement("label", null, "Credit Card Number:", /*#__PURE__*/React.createElement("input", {
+    React.createElement("div", null, /*#__PURE__*/React.createElement("h3", null, "Form Three"), /*#__PURE__*/React.createElement("form", null, /*#__PURE__*/React.createElement("label", null, "CC Number:", /*#__PURE__*/React.createElement("input", {
       type: "text",
+      id: "CC",
       value: ""
     })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Expiry date:", /*#__PURE__*/React.createElement("input", {
       type: "text",
@@ -97,13 +113,14 @@ var FormThree = function FormThree(props) {
     })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Billing zip code:", /*#__PURE__*/React.createElement("input", {
       type: "text",
       value: ""
-    })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
-      type: "submit",
-      value: "Submit"
-    })), /*#__PURE__*/React.createElement("button", {
+    }))), /*#__PURE__*/React.createElement("button", {
       onClick: props.handleNextClickFormThree
     }, "NEXT"))
   );
+};
+
+var ConfirmationPage = function ConfirmationPage() {
+  return /*#__PURE__*/React.createElement("div", null, "WELCOME TO THE Confirmation Page");
 };
 
 var App = /*#__PURE__*/function (_React$Component) {
@@ -118,7 +135,7 @@ var App = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this);
     _this.state = {
-      currentForm: 'FormThree',
+      currentForm: 'HomePage',
       name: '',
       email: '',
       password: '',
@@ -126,59 +143,95 @@ var App = /*#__PURE__*/function (_React$Component) {
       line2: '',
       city: '',
       state: '',
-      zipeCode: '',
+      zipCode: '',
       phoneNumber: '',
       creditCardNumber: '',
       expiryDate: '',
       CVV: '',
       billingZipCode: ''
     };
-    _this.handleCheckoutClick = _this.handleCheckoutClick.bind(_assertThisInitialized(_this));
+    _this.handleHomePageClick = _this.handleHomePageClick.bind(_assertThisInitialized(_this));
     _this.handleNextClickFormOne = _this.handleNextClickFormOne.bind(_assertThisInitialized(_this));
     _this.handleNextClickFormTwo = _this.handleNextClickFormTwo.bind(_assertThisInitialized(_this));
     _this.handleNextClickFormThree = _this.handleNextClickFormThree.bind(_assertThisInitialized(_this));
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(App, [{
-    key: "handleCheckoutClick",
-    value: function handleCheckoutClick() {
+    key: "handleHomePageClick",
+    value: function handleHomePageClick() {
       console.log('SAY WHAT AGAIN.  SAY IT I DARE YOU I DOUBLE DOG DARE YOU.  Clicked in HomePage');
+      this.setState({
+        currentForm: 'FormOne'
+      });
     }
   }, {
     key: "handleNextClickFormOne",
     value: function handleNextClickFormOne() {
       console.log('clicked NEXT in FormOne');
+      console.log('NAME: ', this.state.name, 'EMAIL: ', this.state.email, 'PASSWORD: ', this.state.password);
+      this.setState({
+        currentForm: 'FormTwo'
+      });
     }
   }, {
     key: "handleNextClickFormTwo",
     value: function handleNextClickFormTwo() {
       console.log('clicked NEXT in FormTwo');
+      console.log('LINE1: ', this.state.line1, 'LINE2: ', this.state.line2, 'CITY: ', this.state.city, 'STATE: ', this.state.state, 'ZIPCODE: ', this.state.zipCode, 'PHONE NUM: ', this.state.phoneNumber);
+      this.setState({
+        currentForm: 'FormThree'
+      });
     }
   }, {
     key: "handleNextClickFormThree",
     value: function handleNextClickFormThree() {
-      console.log('clicked NEXT in FormThree');
+      console.log('clicked NEXT in FormThree.  NEED TO SUBMIT ALL DATA TO DB HERE');
+      this.setState({
+        currentForm: 'ConfirmationPage'
+      });
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(event) {
+      // console.log('handling change');
+      var field = event.target.id;
+      this.setState(_defineProperty({}, "".concat(field), event.target.value));
+      console.log('FIELD: ', event.target.id, ' TEXT: ', event.target.value);
     }
   }, {
     key: "render",
     value: function render() {
       if (this.state.currentForm === 'HomePage') {
         return /*#__PURE__*/React.createElement(HomePage, {
-          handleCheckoutClick: this.handleCheckoutClick
+          handleHomePageClick: this.handleHomePageClick
         });
       } else if (this.state.currentForm === 'FormOne') {
         return /*#__PURE__*/React.createElement(FormOne, {
-          handleNextClickFormOne: this.handleNextClickFormOne
+          handleNextClickFormOne: this.handleNextClickFormOne,
+          handleChange: this.handleChange,
+          name: this.state.name,
+          email: this.state.email,
+          password: this.state.password
         });
       } else if (this.state.currentForm === 'FormTwo') {
         return /*#__PURE__*/React.createElement(FormTwo, {
-          handleNextClickFormTwo: this.handleNextClickFormTwo
+          handleNextClickFormTwo: this.handleNextClickFormTwo,
+          handleChange: this.handleChange,
+          line1: this.state.line1,
+          line2: this.state.line2,
+          city: this.state.city,
+          state: this.state.state,
+          zipCode: this.state.zipCode,
+          phoneNumber: this.state.line1
         });
       } else if (this.state.currentForm === 'FormThree') {
         return /*#__PURE__*/React.createElement(FormThree, {
           handleNextClickFormThree: this.handleNextClickFormThree
         });
+      } else if (this.state.currentForm === 'ConfirmationPage') {
+        return /*#__PURE__*/React.createElement(ConfirmationPage, null);
       }
     }
   }]);
