@@ -97,22 +97,30 @@ var FormTwo = function FormTwo(props) {
 };
 
 var FormThree = function FormThree(props) {
+  console.log(props);
   return (
     /*#__PURE__*/
     //credit card #, expiry date, CVV, and billing zip code
     React.createElement("div", null, /*#__PURE__*/React.createElement("h3", null, "Form Three"), /*#__PURE__*/React.createElement("form", null, /*#__PURE__*/React.createElement("label", null, "CC Number:", /*#__PURE__*/React.createElement("input", {
       type: "text",
-      id: "CC",
-      value: ""
+      id: "creditCardNumber",
+      value: props.creditCardNumber,
+      onChange: props.handleChange
     })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Expiry date:", /*#__PURE__*/React.createElement("input", {
       type: "text",
-      value: ""
+      id: "expiryDate",
+      value: props.expiryDate,
+      onChange: props.handleChange
     })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "CVV:", /*#__PURE__*/React.createElement("input", {
       type: "text",
-      value: ""
+      id: "CVV",
+      value: props.CVV,
+      onChange: props.handleChange
     })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Billing zip code:", /*#__PURE__*/React.createElement("input", {
       type: "text",
-      value: ""
+      id: "billingZipCode",
+      value: props.billingZipCode,
+      onChange: props.handleChange
     }))), /*#__PURE__*/React.createElement("button", {
       onClick: props.handleNextClickFormThree
     }, "NEXT"))
@@ -188,6 +196,7 @@ var App = /*#__PURE__*/function (_React$Component) {
     key: "handleNextClickFormThree",
     value: function handleNextClickFormThree() {
       console.log('clicked NEXT in FormThree.  NEED TO SUBMIT ALL DATA TO DB HERE');
+      console.log('CC Number: ', this.state.creditCardNumber, 'expiryDate: ', this.state.expiryDate, 'CVV: ', this.state.CVV, 'billingZipCode: ', this.state.billingZipCode);
       this.setState({
         currentForm: 'ConfirmationPage'
       });
@@ -228,7 +237,12 @@ var App = /*#__PURE__*/function (_React$Component) {
         });
       } else if (this.state.currentForm === 'FormThree') {
         return /*#__PURE__*/React.createElement(FormThree, {
-          handleNextClickFormThree: this.handleNextClickFormThree
+          handleNextClickFormThree: this.handleNextClickFormThree,
+          handleChange: this.handleChange,
+          creditCardNumber: this.state.creditCardNumber,
+          expiryDate: this.state.expiryDate,
+          CVV: this.state.CVV,
+          billingZipCode: this.state.billingZipCode
         });
       } else if (this.state.currentForm === 'ConfirmationPage') {
         return /*#__PURE__*/React.createElement(ConfirmationPage, null);

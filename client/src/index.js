@@ -91,6 +91,7 @@ var FormTwo = function(props){
 };
 
 var FormThree = function(props){
+  console.log(props)
   return (
     //credit card #, expiry date, CVV, and billing zip code
     <div>
@@ -99,25 +100,25 @@ var FormThree = function(props){
       <form>
         <label>
           CC Number:
-          <input type="text" id="CC" value='' />
+          <input type="text" id="creditCardNumber" value={props.creditCardNumber} onChange={props.handleChange} />
         </label>
         <br />
 
         <label>
           Expiry date:
-          <input type="text" value='' />
+          <input type="text" id="expiryDate" value={props.expiryDate} onChange={props.handleChange} />
         </label>
         <br />
 
         <label>
           CVV:
-          <input type="text" value='' />
+          <input type="text" id="CVV" value={props.CVV} onChange={props.handleChange} />
         </label>
         <br />
 
         <label>
           Billing zip code:
-          <input type="text" value='' />
+          <input type="text" id="billingZipCode" value={props.billingZipCode} onChange={props.handleChange} />
         </label>
       </form>
 
@@ -157,7 +158,6 @@ class App extends React.Component {
     this.handleNextClickFormTwo = this.handleNextClickFormTwo.bind(this);
     this.handleNextClickFormThree = this.handleNextClickFormThree.bind(this);
     this.handleChange = this.handleChange.bind(this);
-
   }
 
 
@@ -183,6 +183,9 @@ class App extends React.Component {
   }
   handleNextClickFormThree(){
     console.log('clicked NEXT in FormThree.  NEED TO SUBMIT ALL DATA TO DB HERE');
+
+    console.log('CC Number: ', this.state.creditCardNumber, 'expiryDate: ', this.state.expiryDate, 'CVV: ', this.state.CVV, 'billingZipCode: ', this.state.billingZipCode)
+
     this.setState({
       currentForm: 'ConfirmationPage'
     })
@@ -224,6 +227,11 @@ class App extends React.Component {
     else if (this.state.currentForm === 'FormThree') {
       return(<FormThree
         handleNextClickFormThree={this.handleNextClickFormThree}
+        handleChange={this.handleChange}
+        creditCardNumber={this.state.creditCardNumber}
+        expiryDate={this.state.expiryDate}
+        CVV={this.state.CVV}
+        billingZipCode={this.state.billingZipCode}
       />)
     }
     else if (this.state.currentForm === 'ConfirmationPage') {
