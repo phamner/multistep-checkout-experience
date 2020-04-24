@@ -19,9 +19,12 @@ app.get('/', (req, res) => res.send('Hello World from server/index.js nodemon!')
 //handles post request at '/' endpoint.  Called 'Route?'
 app.post('/customerInfo', (req, res) => {
   // console.log('REQUEST DATA ARRIVING IN SERVER: ', req.body)
-  dbHelpers.addDataToDB(req.body, (data) => {
-    console.log(data)
-    res.send(data)
+  dbHelpers.addDataToDB(req.body, (err, data) => {
+    if (err) {
+      res.send(err)
+    } else {
+      res.send(data)
+    }
   })
 })
 

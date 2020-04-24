@@ -1,3 +1,4 @@
+//index.js to connect to db
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
   host     : 'localhost',
@@ -8,6 +9,8 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
+//seperate file to
+//requre index.js to get access to my db.
 module.exports = {
   addDataToDB: function(query, callback){
     console.log('QUERY ARRIVING IN DATABASE:  ', query)
@@ -16,7 +19,6 @@ module.exports = {
         callback(error)
       } else {
         callback(null, results);
-
       }
     }
   }
