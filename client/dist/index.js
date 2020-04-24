@@ -24,6 +24,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+// import axios from "axios";  //webpack(?)
 var HomePage = function HomePage(props) {
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
     onClick: props.handleHomePageClick
@@ -176,7 +177,7 @@ var App = /*#__PURE__*/function (_React$Component) {
       console.log('SAY WHAT AGAIN.  SAY IT I DARE YOU I DOUBLE DOG DARE YOU.  Clicked in HomePage');
       this.setState({
         currentForm: 'FormOne'
-      });
+      }); // Axios.get()
     }
   }, {
     key: "handleNextClickFormOne",
@@ -208,8 +209,31 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handlePurchaseClick",
     value: function handlePurchaseClick() {
-      console.log('purchase button has been clicked yall!');
-      alert("thank you for your purchase ".concat(this.state.name));
+      console.log('POST REQUEST MADE FROM CLIENT'); // alert(`thank you for your purchase ${this.state.name}`);
+
+      axios.post('/customerInfo', {
+        // firstName: 'Fred',
+        // lastName: 'Flintstone'
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password,
+        line1: this.state.line1,
+        line2: this.state.line2,
+        city: this.state.city,
+        state: this.state.state,
+        zipCode: this.state.zipCode,
+        phoneNumber: this.state.phoneNumber,
+        creditCardNumber: this.state.creditCardNumber,
+        expiryDate: this.state.expiryDate,
+        CVV: this.state.CVV,
+        billingZipCode: this.state.billingZipCode
+      }).then(function (response) {
+        console.log(response);
+        console.log('POST REQUEST HAS BEEN SUCCESSFUL -CLIENT');
+      })["catch"](function (error) {
+        console.log(error);
+        console.log('POST REQUEST HAS FAILED -CLIENT');
+      });
       this.setState({
         currentForm: 'HomePage'
       });

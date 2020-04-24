@@ -1,3 +1,5 @@
+// import axios from "axios";  //webpack(?)
+
 var HomePage = function(props){
   return(
     <div>
@@ -186,12 +188,12 @@ class App extends React.Component {
     this.handlePurchaseClick = this.handlePurchaseClick.bind(this);
   }
 
-
   handleHomePageClick() {
     console.log('SAY WHAT AGAIN.  SAY IT I DARE YOU I DOUBLE DOG DARE YOU.  Clicked in HomePage');
     this.setState({
       currentForm: 'FormOne'
     })
+    // Axios.get()
   }
   handleNextClickFormOne(){
     console.log('clicked NEXT in FormOne');
@@ -217,15 +219,48 @@ class App extends React.Component {
     })
   }
   handlePurchaseClick(){
-    console.log('purchase button has been clicked yall!');
-    alert(`thank you for your purchase ${this.state.name}`);
+    console.log('POST REQUEST MADE FROM CLIENT');
+    // alert(`thank you for your purchase ${this.state.name}`);
+
+
+    axios.post('/customerInfo', {
+      // firstName: 'Fred',
+      // lastName: 'Flintstone'
+
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      line1: this.state.line1,
+      line2: this.state.line2,
+      city: this.state.city,
+      state: this.state.state,
+      zipCode: this.state.zipCode,
+      phoneNumber: this.state.phoneNumber,
+      creditCardNumber: this.state.creditCardNumber,
+      expiryDate: this.state.expiryDate,
+      CVV: this.state.CVV,
+      billingZipCode: this.state.billingZipCode,
+    })
+    .then(function (response) {
+      console.log(response);
+      console.log('POST REQUEST HAS BEEN SUCCESSFUL -CLIENT')
+    })
+    .catch(function (error) {
+      console.log(error);
+      console.log('POST REQUEST HAS FAILED -CLIENT')
+    });
+
     this.setState({
       currentForm: 'HomePage'
     })
+
+
+
+
+
+
+
   }
-
-
-
   handleChange(event){
     // console.log('handling change');
     var field = event.target.id
@@ -286,7 +321,6 @@ class App extends React.Component {
         expiryDate={this.state.expiryDate}
         CVV={this.state.CVV}
         billingZipCode={this.state.billingZipCode}
-
       />)
     }
   }
